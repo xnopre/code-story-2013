@@ -1,0 +1,24 @@
+<configuration debug="false" scan="true">
+
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy/MM/dd HH:mm:ss,SSS} [%thread] %-5level %logger{50} - %m %throwable%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="log-file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/codestory-application.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rotate every day for log collection and archiving -->
+			<fileNamePattern>codestory-application.%d{yyyyMMdd}.log</fileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy/MM/dd HH:mm:ss,SSS} [%thread] %-5level %logger{50} - %m %throwable%n</pattern>
+		</encoder>
+	</appender>
+
+	<root level="ALL">
+		<appender-ref ref="stdout" />
+		<appender-ref ref="log-file" />
+	</root>
+</configuration>
