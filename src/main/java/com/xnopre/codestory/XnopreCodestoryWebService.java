@@ -1,6 +1,5 @@
 package com.xnopre.codestory;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
@@ -28,13 +27,11 @@ public class XnopreCodestoryWebService extends AbstractService {
 
 	@Override
 	protected void doStart() {
-		String s = "A:/aa.txt";
-		new File(s);
 		try {
 			socketConnection = new SocketConnection(controller);
 			socketConnection.connect(new InetSocketAddress(port));
 			notifyStarted();
-			logger.info("service started !");
+			logger.info("service started on port " + port + " !");
 		} catch (IOException e) {
 			logger.error("eror starting service", e);
 			notifyFailed(e);
