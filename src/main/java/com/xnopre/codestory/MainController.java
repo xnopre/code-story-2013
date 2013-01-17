@@ -11,7 +11,8 @@ import org.slf4j.LoggerFactory;
 
 public class MainController implements Container {
 
-	private final Logger logger = LoggerFactory.getLogger(MainController.class);
+	private static final Logger logger = LoggerFactory
+			.getLogger(MainController.class);
 
 	public void handle(Request request, Response response) {
 		logger.info("handle request ...");
@@ -28,7 +29,7 @@ public class MainController implements Container {
 
 	private String getResponseText(Request request) throws IOException {
 		String q = request.getParameter("q");
-		logger.info("'q' parameter in request = '"+q+"'");
+		logger.info("'q' parameter in request = '" + q + "'");
 		if ("Quelle est ton adresse email".equals(q)) {
 			return "xnopre@gmail.com";
 		}

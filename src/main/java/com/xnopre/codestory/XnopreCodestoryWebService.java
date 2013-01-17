@@ -12,7 +12,7 @@ import com.google.common.util.concurrent.AbstractService;
 
 public class XnopreCodestoryWebService extends AbstractService {
 
-	private final Logger logger = LoggerFactory
+	private static final Logger logger = LoggerFactory
 			.getLogger(XnopreCodestoryWebService.class);
 
 	private final int port;
