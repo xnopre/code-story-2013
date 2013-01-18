@@ -92,6 +92,15 @@ public class MainControllerTest {
 		assertEquals("OUI", getRequestBodyAsString());
 	}
 
+	@Test
+	public void testAlwaysAnswerYesRequest() throws IOException {
+		when(mockRequest.getParameter("q")).thenReturn("Est ce que tu reponds toujours oui(OUI/NON)");
+
+		mainController.handle(mockRequest, mockResponse);
+
+		assertEquals("NON", getRequestBodyAsString());
+	}
+
 	// Private methods
 
 	private String getRequestBodyAsString() {

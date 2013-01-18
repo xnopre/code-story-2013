@@ -92,6 +92,9 @@ public class MainController implements Container {
 		if ("Es tu pret a recevoir une enonce au format markdown par http post(OUI/NON)".equals(q)) {
 			return "OUI";
 		}
+		if ("Est ce que tu reponds toujours oui(OUI/NON)".equals(q)) {
+			return "NON";
+		}
 		return "CodeStory 2013 by @xnopre";
 	}
 
