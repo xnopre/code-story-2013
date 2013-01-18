@@ -6,36 +6,19 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.simpleframework.http.Request;
-import org.simpleframework.http.Response;
 
-public class MainControllerTest {
+public class MainControllerTest extends AbsctractControllerTest {
 
 	private MainController mainController;
-
-	@Mock
-	private Request mockRequest;
-
-	@Mock
-	private Response mockResponse;
-
-	private ByteArrayOutputStream bodyArrayStream;
 
 	@Before
 	public void setup() throws IOException {
 		mainController = new MainController();
-		MockitoAnnotations.initMocks(this);
-		bodyArrayStream = new ByteArrayOutputStream();
-		PrintStream bodyPrintStream = new PrintStream(bodyArrayStream);
-		when(mockResponse.getPrintStream()).thenReturn(bodyPrintStream);
 	}
 
 	@Test
@@ -45,7 +28,7 @@ public class MainControllerTest {
 
 		mainController.handle(mockRequest, mockResponse);
 
-		verify(mockBodyPrintStream).close();
+		verify(mockResponse).close();
 	}
 
 	@Test
@@ -108,12 +91,6 @@ public class MainControllerTest {
 		mainController.handle(mockRequest, mockResponse);
 
 		assertEquals("OUI", getRequestBodyAsString());
-	}
-
-	// Private methods
-
-	private String getRequestBodyAsString() {
-		return new String(bodyArrayStream.toByteArray());
 	}
 
 }

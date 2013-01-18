@@ -59,4 +59,10 @@ public class FunctionalTest {
 		tester.beginAt("/?q=Quelle+est+ton+adresse+email");
 		assertEquals("xnopre@gmail.com", tester.getPageSource());
 	}
+
+	@Test
+	public void testScalaskelChange1Request() {
+		tester.beginAt("/scalaskel/change/1");
+		assertEquals("[{\"foo\":1}]", tester.getPageSource());
+	}
 }

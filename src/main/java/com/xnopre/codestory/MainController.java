@@ -36,6 +36,10 @@ public class MainController implements Container {
 			if (path != null) {
 				String[] pathSegments = path.getSegments();
 				if (pathSegments != null && pathSegments.length > 0) {
+					if ("scalaskel".equals(pathSegments[0])) {
+						new ScalaskelController().handle(request, response, pathSegments[1], pathSegments[2]);
+						return;
+					}
 					System.out.println("pathSegments = " + Arrays.asList(pathSegments));
 					// if (pathSegments[0].equals("favicon.ico")) {
 					// logger.info("handle request for favicon");
@@ -59,15 +63,12 @@ public class MainController implements Container {
 					// }
 				}
 			}
-			try {
-				fillResponseHeadersForTextPlain(response);
-				PrintStream body = response.getPrintStream();
-				String responseText = getResponseText(request);
-				body.print(responseText);
-				body.close();
-			} catch (Exception e) {
-				logger.error("Error handle request", e);
-			}
+			fillResponseHeadersForTextPlain(response);
+			PrintStream body = response.getPrintStream();
+			String responseText = getResponseText(request);
+			body.print(responseText);
+		} catch (Exception e) {
+			logger.error("Error handle request", e);
 		} finally {
 			try {
 				response.close();
