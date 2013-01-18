@@ -80,7 +80,7 @@ public class MainControllerTest {
 
 		mainController.handle(mockRequest, mockResponse);
 
-		assertEquals("NON", getRequestBodyAsString());
+		assertEquals("OUI", getRequestBodyAsString());
 	}
 
 	// Private methods

@@ -75,7 +75,7 @@ public class MainController implements Container {
 			return "OUI";
 		}
 		if ("Es tu abonne a la mailing list(OUI/NON)".equals(q)) {
-			return "NON";
+			return "OUI";
 		}
 		return "CodeStory 2013 by @xnopre";
 	}
