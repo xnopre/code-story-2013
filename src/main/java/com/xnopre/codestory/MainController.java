@@ -19,8 +19,20 @@ public class MainController implements Container {
 		try {
 			logger.info("handle request ...");
 			Path path = request.getPath();
+			logger.info(". Content-Type = " + request.getValue("Content-Type"));
+			logger.info(". method = " + request.getMethod());
 			logger.info(". path = " + path);
 			logger.info(". query = " + request.getQuery());
+			try {
+				logger.info(". content = " + request.getContent());
+			} catch (IOException e) {
+				logger.error("Error getting content from request", e);
+			}
+			try {
+				logger.info(". form = " + request.getForm());
+			} catch (IOException e) {
+				logger.error("Error getting form from request", e);
+			}
 			if (path != null) {
 				String[] pathSegments = path.getSegments();
 				if (pathSegments != null && pathSegments.length > 0) {
@@ -48,7 +60,7 @@ public class MainController implements Container {
 				}
 			}
 			try {
-				fillResponseHeaders(response);
+				fillResponseHeadersForTextPlain(response);
 				PrintStream body = response.getPrintStream();
 				String responseText = getResponseText(request);
 				body.print(responseText);
@@ -77,10 +89,13 @@ public class MainController implements Container {
 		if ("Es tu abonne a la mailing list(OUI/NON)".equals(q)) {
 			return "OUI";
 		}
+		if ("Es tu pret a recevoir une enonce au format markdown par http post(OUI/NON)".equals(q)) {
+			return "OUI";
+		}
 		return "CodeStory 2013 by @xnopre";
 	}
 
-	private void fillResponseHeaders(Response response) {
+	private void fillResponseHeadersForTextPlain(Response response) {
 		response.set("Content-Type", "text/plain");
 		response.set("Server", "xnopre/CodeStory13");
 		long time = System.currentTimeMillis();

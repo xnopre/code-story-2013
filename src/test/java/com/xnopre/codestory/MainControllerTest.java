@@ -83,6 +83,15 @@ public class MainControllerTest {
 		assertEquals("OUI", getRequestBodyAsString());
 	}
 
+	@Test
+	public void testReadyForMarkDownHttpPostRequest() throws IOException {
+		when(mockRequest.getParameter("q")).thenReturn("Es tu pret a recevoir une enonce au format markdown par http post(OUI/NON)");
+
+		mainController.handle(mockRequest, mockResponse);
+
+		assertEquals("OUI", getRequestBodyAsString());
+	}
+
 	// Private methods
 
 	private String getRequestBodyAsString() {
