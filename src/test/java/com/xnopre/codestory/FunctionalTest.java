@@ -2,11 +2,16 @@ package com.xnopre.codestory;
 
 import static ch.qos.logback.classic.Level.INFO;
 import static junit.framework.Assert.assertEquals;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import net.sourceforge.jwebunit.junit.WebTester;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.LoggerFactory;
 
@@ -19,13 +24,12 @@ public class FunctionalTest {
 
 	@BeforeClass
 	public static void classSetUp() {
-		((LoggerContext) LoggerFactory.getILoggerFactory()).getLogger("ROOT")
-				.setLevel(INFO);
+		((LoggerContext) LoggerFactory.getILoggerFactory()).getLogger("ROOT").setLevel(INFO);
 	}
 
 	@Before
 	public void prepare() {
-		int port = 8081;
+		int port = 8089;
 		service = new XnopreCodestoryWebService(port, new MainController());
 		service.startAndWait();
 		tester = new WebTester();
@@ -41,6 +45,13 @@ public class FunctionalTest {
 	public void testRootRequest() {
 		tester.beginAt("/");
 		tester.assertTextPresent("CodeStory 2013 by @xnopre");
+	}
+
+	@Test
+	@Ignore
+	public void testFavicon() throws MalformedURLException {
+		tester.beginAt("/favicon.ico");
+		tester.assertDownloadedFileEquals(new URL("file:favicon.ico"));
 	}
 
 	@Test

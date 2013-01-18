@@ -1,6 +1,7 @@
 package com.xnopre.codestory;
 
 import java.util.Map;
+import java.util.Properties;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,13 +18,13 @@ public class Main {
 	private static int getEnvPort() {
 		String envPort = System.getenv("PORT");
 		if (envPort == null) {
-			dumpEnvs();
-			throw new IllegalStateException("Environment variable PORT is null");
+			envPort = System.getProperty("app.port");
 		}
-		if (envPort.length() == 0) {
+		if (envPort == null || envPort.length() == 0) {
 			dumpEnvs();
-			throw new IllegalStateException(
-					"Environment variable PORT is empty");
+			dumpProperties();
+			throw new IllegalStateException("Environment variable PORT is '"
+					+ envPort + "'");
 		}
 		try {
 			return Integer.parseInt(envPort);
@@ -41,4 +42,11 @@ public class Main {
 		}
 	}
 
+	private static void dumpProperties() {
+		logger.info("Environment properties :");
+		Properties properties = System.getProperties();
+		for (Object key : properties.keySet()) {
+			logger.info("  . " + key + " --> " + properties.get(key));
+		}
+	}
 }

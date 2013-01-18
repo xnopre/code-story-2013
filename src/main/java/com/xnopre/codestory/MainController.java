@@ -2,7 +2,9 @@ package com.xnopre.codestory;
 
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.Arrays;
 
+import org.simpleframework.http.Path;
 import org.simpleframework.http.Request;
 import org.simpleframework.http.Response;
 import org.simpleframework.http.core.Container;
@@ -11,19 +13,55 @@ import org.slf4j.LoggerFactory;
 
 public class MainController implements Container {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(MainController.class);
+	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
 	public void handle(Request request, Response response) {
-		logger.info("handle request ...");
 		try {
-			fillResponseHeaders(response);
-			PrintStream body = response.getPrintStream();
-			String responseText = getResponseText(request);
-			body.print(responseText);
-			body.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+			logger.info("handle request ...");
+			Path path = request.getPath();
+			logger.info(". path = " + path);
+			logger.info(". query = " + request.getQuery());
+			if (path != null) {
+				String[] pathSegments = path.getSegments();
+				if (pathSegments != null && pathSegments.length > 0) {
+					System.out.println("pathSegments = " + Arrays.asList(pathSegments));
+					// if (pathSegments[0].equals("favicon.ico")) {
+					// logger.info("handle request for favicon");
+					// try {
+					// //
+					// IOUtils.copy(getClass().getClassLoader().getResourceAsStream("favicon.ico"),
+					// // response.getOutputStream());
+					// System.out.println("avant");
+					// FileUtils.copyFile(new File("favicon.ico"),
+					// response.getOutputStream());
+					// System.out.println("apres");
+					// // response.getOutputStream().flush();
+					// // response.getOutputStream().close();
+					// logger.info("request for favicon handled !");
+					// } catch (Exception e) {
+					// System.out.println("error");
+					// e.printStackTrace();
+					// logger.error("Error responding favicon", e);
+					// }
+					// return;
+					// }
+				}
+			}
+			try {
+				fillResponseHeaders(response);
+				PrintStream body = response.getPrintStream();
+				String responseText = getResponseText(request);
+				body.print(responseText);
+				body.close();
+			} catch (Exception e) {
+				logger.error("Error handle request", e);
+			}
+		} finally {
+			try {
+				response.close();
+			} catch (IOException e) {
+				logger.error("Error closing response", e);
+			}
 		}
 	}
 
@@ -32,6 +70,9 @@ public class MainController implements Container {
 		logger.info("'q' parameter in request = '" + q + "'");
 		if ("Quelle est ton adresse email".equals(q)) {
 			return "xnopre@gmail.com";
+		}
+		if ("Es tu heureux de participer(OUI/NON)".equals(q)) {
+			return "OUI";
 		}
 		return "CodeStory 2013 by @xnopre";
 	}
