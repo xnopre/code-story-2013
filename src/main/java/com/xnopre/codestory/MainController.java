@@ -74,6 +74,9 @@ public class MainController implements Container {
 		if ("Es tu heureux de participer(OUI/NON)".equals(q)) {
 			return "OUI";
 		}
+		if ("Es tu abonne a la mailing list(OUI/NON)".equals(q)) {
+			return "NON";
+		}
 		return "CodeStory 2013 by @xnopre";
 	}
 

@@ -74,6 +74,15 @@ public class MainControllerTest {
 		assertEquals("OUI", getRequestBodyAsString());
 	}
 
+	@Test
+	public void testMailingListRequest() throws IOException {
+		when(mockRequest.getParameter("q")).thenReturn("Es tu abonne a la mailing list(OUI/NON)");
+
+		mainController.handle(mockRequest, mockResponse);
+
+		assertEquals("NON", getRequestBodyAsString());
+	}
+
 	// Private methods
 
 	private String getRequestBodyAsString() {
