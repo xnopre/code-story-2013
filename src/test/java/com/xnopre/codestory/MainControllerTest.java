@@ -101,6 +101,15 @@ public class MainControllerTest {
 		assertEquals("NON", getRequestBodyAsString());
 	}
 
+	@Test
+	public void testConfirmEnonce1Request() throws IOException {
+		when(mockRequest.getParameter("q")).thenReturn("As tu bien recu le premier enonce(OUI/NON)");
+
+		mainController.handle(mockRequest, mockResponse);
+
+		assertEquals("OUI", getRequestBodyAsString());
+	}
+
 	// Private methods
 
 	private String getRequestBodyAsString() {

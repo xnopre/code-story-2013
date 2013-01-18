@@ -95,6 +95,9 @@ public class MainController implements Container {
 		if ("Est ce que tu reponds toujours oui(OUI/NON)".equals(q)) {
 			return "NON";
 		}
+		if ("As tu bien recu le premier enonce(OUI/NON)".equals(q)) {
+			return "OUI";
+		}
 		return "CodeStory 2013 by @xnopre";
 	}
 
