@@ -38,12 +38,9 @@ public class QController {
 		if (q.equals("As tu bien recu le premier enonce(OUI/NON)")) {
 			return "OUI";
 		}
-		if (q.equals("1 1")) {
-			return "2";
-		}
-		if (q.equals("2 2")) {
-			return "4";
-		}
-		return "What ?";
+
+		return new ExpressionEvaluatorWithGroovy().evaluate(q).toString();
+
+		// return "What ?";
 	}
 }
