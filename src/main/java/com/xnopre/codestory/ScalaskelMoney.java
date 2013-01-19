@@ -29,6 +29,11 @@ public class ScalaskelMoney {
 	}
 
 	@Override
+	public String toString() {
+		return "ScalaskelMoney[packs=" + packs + "]";
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;

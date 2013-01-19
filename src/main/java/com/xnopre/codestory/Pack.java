@@ -60,6 +60,11 @@ public class Pack {
 	}
 
 	@Override
+	public String toString() {
+		return "Pack [foo=" + foo + ", bar=" + bar + ", qix=" + qix + ", baz=" + baz + "]";
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
