@@ -39,8 +39,12 @@ public class QController {
 			return "OUI";
 		}
 
-		return new ExpressionEvaluatorWithGroovy().evaluate(q).toString();
+		try {
+			return new ExpressionEvaluatorWithGroovy().evaluate(q).toString();
+		} catch (CodestoryException e) {
+			logger.error("Error trying to evaluate", e);
+		}
 
-		// return "What ?";
+		return "What ?";
 	}
 }

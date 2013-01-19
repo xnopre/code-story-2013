@@ -45,8 +45,8 @@ public class MainControllerTest extends AbsctractControllerTest {
 
 		mainController.handle(mockRequest, mockResponse);
 
-		// assertEquals("What ?", getRequestBodyAsString());
-		assertEquals("", getRequestBodyAsString());
+		assertEquals("What ?", getRequestBodyAsString());
+		// assertEquals("", getRequestBodyAsString());
 	}
 
 }
