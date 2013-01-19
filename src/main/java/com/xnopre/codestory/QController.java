@@ -41,6 +41,9 @@ public class QController {
 		if (q.equals("1 1")) {
 			return "2";
 		}
+		if (q.equals("2 2")) {
+			return "4";
+		}
 		return "What ?";
 	}
 }

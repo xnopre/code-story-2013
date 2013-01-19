@@ -40,57 +40,12 @@ public class MainControllerTest extends AbsctractControllerTest {
 	}
 
 	@Test
-	public void testInitialRequest() throws IOException {
-		when(mockRequest.getParameter("q")).thenReturn("Quelle est ton adresse email");
-
-		mainController.handle(mockRequest, mockResponse);
-
-		assertEquals("xnopre@gmail.com", getRequestBodyAsString());
-	}
-
-	@Test
 	public void testHappyRequest() throws IOException {
-		when(mockRequest.getParameter("q")).thenReturn("Es tu heureux de participer(OUI/NON)");
+		when(mockRequest.getParameter("q")).thenReturn("N'importe quoi");
 
 		mainController.handle(mockRequest, mockResponse);
 
-		assertEquals("OUI", getRequestBodyAsString());
-	}
-
-	@Test
-	public void testMailingListRequest() throws IOException {
-		when(mockRequest.getParameter("q")).thenReturn("Es tu abonne a la mailing list(OUI/NON)");
-
-		mainController.handle(mockRequest, mockResponse);
-
-		assertEquals("OUI", getRequestBodyAsString());
-	}
-
-	@Test
-	public void testReadyForMarkDownHttpPostRequest() throws IOException {
-		when(mockRequest.getParameter("q")).thenReturn("Es tu pret a recevoir une enonce au format markdown par http post(OUI/NON)");
-
-		mainController.handle(mockRequest, mockResponse);
-
-		assertEquals("OUI", getRequestBodyAsString());
-	}
-
-	@Test
-	public void testAlwaysAnswerYesRequest() throws IOException {
-		when(mockRequest.getParameter("q")).thenReturn("Est ce que tu reponds toujours oui(OUI/NON)");
-
-		mainController.handle(mockRequest, mockResponse);
-
-		assertEquals("NON", getRequestBodyAsString());
-	}
-
-	@Test
-	public void testConfirmEnonce1Request() throws IOException {
-		when(mockRequest.getParameter("q")).thenReturn("As tu bien recu le premier enonce(OUI/NON)");
-
-		mainController.handle(mockRequest, mockResponse);
-
-		assertEquals("OUI", getRequestBodyAsString());
+		assertEquals("What ?", getRequestBodyAsString());
 	}
 
 }
