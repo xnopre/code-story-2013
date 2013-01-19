@@ -66,6 +66,7 @@ public class MainController implements Container {
 			fillResponseHeadersForTextPlain(response);
 			PrintStream body = response.getPrintStream();
 			String responseText = getResponseText(request);
+			logger.info("response = '" + responseText + "'");
 			body.print(responseText);
 		} catch (Exception e) {
 			logger.error("Error handle request", e);
