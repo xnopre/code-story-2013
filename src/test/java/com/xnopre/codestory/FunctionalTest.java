@@ -65,4 +65,10 @@ public class FunctionalTest {
 		tester.beginAt("/scalaskel/change/1");
 		assertEquals("[{\"foo\":1}]", tester.getPageSource());
 	}
+
+	@Test
+	public void testCalculRequest() {
+		tester.beginAt("/?q=1+1");
+		assertEquals("2", tester.getPageSource());
+	}
 }

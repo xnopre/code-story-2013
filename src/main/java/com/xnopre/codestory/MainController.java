@@ -1,7 +1,6 @@
 package com.xnopre.codestory;
 
 import java.io.IOException;
-import java.io.PrintStream;
 import java.util.Arrays;
 
 import org.simpleframework.http.Path;
@@ -63,11 +62,12 @@ public class MainController implements Container {
 					// }
 				}
 			}
-			fillResponseHeadersForTextPlain(response);
-			PrintStream body = response.getPrintStream();
-			String responseText = getResponseText(request);
-			logger.info("response = '" + responseText + "'");
-			body.print(responseText);
+			String q = request.getParameter("q");
+			if (q != null) {
+				new QController().handle(request, response, q);
+				return;
+			}
+			Helper.printInBody(response, "CodeStory 2013 by @xnopre");
 		} catch (Exception e) {
 			logger.error("Error handle request", e);
 		} finally {
@@ -77,38 +77,6 @@ public class MainController implements Container {
 				logger.error("Error closing response", e);
 			}
 		}
-	}
-
-	private String getResponseText(Request request) throws IOException {
-		String q = request.getParameter("q");
-		logger.info("'q' parameter in request = '" + q + "'");
-		if ("Quelle est ton adresse email".equals(q)) {
-			return "xnopre@gmail.com";
-		}
-		if ("Es tu heureux de participer(OUI/NON)".equals(q)) {
-			return "OUI";
-		}
-		if ("Es tu abonne a la mailing list(OUI/NON)".equals(q)) {
-			return "OUI";
-		}
-		if ("Es tu pret a recevoir une enonce au format markdown par http post(OUI/NON)".equals(q)) {
-			return "OUI";
-		}
-		if ("Est ce que tu reponds toujours oui(OUI/NON)".equals(q)) {
-			return "NON";
-		}
-		if ("As tu bien recu le premier enonce(OUI/NON)".equals(q)) {
-			return "OUI";
-		}
-		return "CodeStory 2013 by @xnopre";
-	}
-
-	private void fillResponseHeadersForTextPlain(Response response) {
-		response.set("Content-Type", "text/plain");
-		response.set("Server", "xnopre/CodeStory13");
-		long time = System.currentTimeMillis();
-		response.setDate("Date", time);
-		response.setDate("Last-Modified", time);
 	}
 
 }
