@@ -1,6 +1,7 @@
 package com.xnopre.codestory;
 
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,7 +19,15 @@ public class ScalaskelMoneyCalculatorTest {
 		ScalaskelMoney money = scalaskelMoneyCalculator.calculate(1);
 
 		ScalaskelMoney expectedMoney = new ScalaskelMoneyBuilder().addPack().setFoo(1).build();
-		Assert.assertEquals(expectedMoney, money);
+		assertEquals(expectedMoney, money);
+	}
+
+	@Test
+	public void test2() {
+		ScalaskelMoney money = scalaskelMoneyCalculator.calculate(2);
+
+		ScalaskelMoney expectedMoney = new ScalaskelMoneyBuilder().addPack().setFoo(2).build();
+		assertEquals(expectedMoney, money);
 	}
 
 }
