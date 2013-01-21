@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 public class ExpressionEvaluatorWithScriptEngineManager implements ExpressionEvaluator {
 
-	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
+	private static final Logger logger = LoggerFactory.getLogger(ExpressionEvaluatorWithScriptEngineManager.class);
 
 	public String evaluate(String expression) {
 		try {

@@ -12,7 +12,7 @@ import org.stringtemplate.v4.ST;
 
 public class EnonceController {
 
-	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
+	private static final Logger logger = LoggerFactory.getLogger(EnonceController.class);
 
 	public void handle(Request request, Response response, String number) throws IOException {
 		System.out.println();

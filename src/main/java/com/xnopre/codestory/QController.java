@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 public class QController {
 
-	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
+	private static final Logger logger = LoggerFactory.getLogger(QController.class);
 
 	public void handle(Request request, Response response, String q) throws IOException {
 		Helper.fillResponseHeadersForTextPlain(response);

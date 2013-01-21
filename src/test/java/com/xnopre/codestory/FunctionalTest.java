@@ -85,4 +85,10 @@ public class FunctionalTest {
 		tester.assertTextPresent("Scalaskel");
 	}
 
+	@Test
+	@Ignore
+	public void testJajascript1() {
+		// ???
+	}
+
 }

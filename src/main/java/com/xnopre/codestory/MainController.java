@@ -45,6 +45,11 @@ public class MainController implements Container {
 						new EnonceController().handle(request, response, pathSegments[1]);
 						return;
 					}
+					if ("jajascript".equals(pathSegments[0]) && "optimize".equals(pathSegments[1])) {
+						logger.info("call JajascriptController");
+						new JajascriptController().handle(request, response);
+						return;
+					}
 					System.out.println("pathSegments = " + Arrays.asList(pathSegments));
 					// if (pathSegments[0].equals("favicon.ico")) {
 					// logger.info("handle request for favicon");
