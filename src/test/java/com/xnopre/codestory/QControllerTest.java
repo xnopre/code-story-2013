@@ -102,4 +102,12 @@ public class QControllerTest extends AbsctractControllerTest {
 
 		assertEquals("31878018903828899277492024491376690701584023926880", getRequestBodyAsString());
 	}
+
+	@Test
+	public void testRequestBonneNuit() throws IOException {
+
+		qController.handle(mockRequest, mockResponse, "As tu passe une bonne nuit malgre les bugs de l etape precedente(PAS_TOP/BOF/QUELS_BUGS)");
+
+		assertEquals("QUELS_BUGS", getRequestBodyAsString());
+	}
 }
