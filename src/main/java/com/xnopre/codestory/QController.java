@@ -41,6 +41,9 @@ public class QController {
 		if (q.equals("As tu passe une bonne nuit malgre les bugs de l etape precedente(PAS_TOP/BOF/QUELS_BUGS)")) {
 			return "QUELS_BUGS";
 		}
+		if (q.equals("As tu bien recu le second enonce(OUI/NON)")) {
+			return "OUI";
+		}
 
 		try {
 			String mathExpressionWithDot = q.replace(",", ".");

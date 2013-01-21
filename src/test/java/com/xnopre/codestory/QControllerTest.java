@@ -56,7 +56,7 @@ public class QControllerTest extends AbsctractControllerTest {
 	}
 
 	@Test
-	public void testConfirmEnonce1Request() throws IOException {
+	public void testConfirmEnonce1Recu() throws IOException {
 
 		qController.handle(mockRequest, mockResponse, "As tu bien recu le premier enonce(OUI/NON)");
 
@@ -110,4 +110,13 @@ public class QControllerTest extends AbsctractControllerTest {
 
 		assertEquals("QUELS_BUGS", getRequestBodyAsString());
 	}
+
+	@Test
+	public void testConfirmEnonce2Recu() throws IOException {
+
+		qController.handle(mockRequest, mockResponse, "As tu bien recu le second enonce(OUI/NON)");
+
+		assertEquals("OUI", getRequestBodyAsString());
+	}
+
 }
