@@ -42,9 +42,7 @@ public class QController {
 		try {
 			String mathExpressionWithDot = q.replace(",", ".");
 			String result = new ExpressionEvaluatorWithGroovy().evaluate(mathExpressionWithDot).toString();
-			if (result.endsWith(".0")) {
-				result = result.substring(0, result.length() - 2);
-			}
+			result = MathUtils.removeZerosAtEnd(result);
 			return result.replace(".", ",");
 		} catch (CodestoryException e) {
 			logger.error("Error trying to evaluate", e);
