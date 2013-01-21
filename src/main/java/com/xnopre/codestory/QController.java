@@ -40,7 +40,11 @@ public class QController {
 		}
 
 		try {
-			String result = new ExpressionEvaluatorWithGroovy().evaluate(q).toString();
+			String mathExpressionWithDot = q.replace(",", ".");
+			String result = new ExpressionEvaluatorWithGroovy().evaluate(mathExpressionWithDot).toString();
+			if (result.endsWith(".0")) {
+				result = result.substring(0, result.length() - 2);
+			}
 			return result.replace(".", ",");
 		} catch (CodestoryException e) {
 			logger.error("Error trying to evaluate", e);

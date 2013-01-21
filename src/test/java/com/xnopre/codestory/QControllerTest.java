@@ -80,11 +80,19 @@ public class QControllerTest extends AbsctractControllerTest {
 	}
 
 	@Test
-	public void testDecimalRequest() throws IOException {
+	public void testDecimalResultRequest() throws IOException {
 
 		qController.handle(mockRequest, mockResponse, "(1 2)/2");
 
 		assertEquals("1,5", getRequestBodyAsString());
+	}
+
+	@Test
+	public void testDecimalParameterRequest() throws IOException {
+
+		qController.handle(mockRequest, mockResponse, "1,5*4");
+
+		assertEquals("6", getRequestBodyAsString());
 	}
 
 }
