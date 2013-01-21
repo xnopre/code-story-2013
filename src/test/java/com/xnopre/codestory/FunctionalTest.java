@@ -71,4 +71,12 @@ public class FunctionalTest {
 		tester.beginAt("/?q=1+1");
 		assertEquals("2", tester.getPageSource());
 	}
+
+	@Test
+	public void testDecimalCalculRequest() {
+		// q=(1 2)/2 --> 1,5
+		tester.beginAt("/?q=q=%281+2%29%2F2");
+		assertEquals("1,5", tester.getPageSource());
+	}
+
 }

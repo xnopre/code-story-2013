@@ -40,7 +40,8 @@ public class QController {
 		}
 
 		try {
-			return new ExpressionEvaluatorWithGroovy().evaluate(q).toString();
+			String result = new ExpressionEvaluatorWithGroovy().evaluate(q).toString();
+			return result.replace(".", ",");
 		} catch (CodestoryException e) {
 			logger.error("Error trying to evaluate", e);
 		}
