@@ -79,4 +79,10 @@ public class FunctionalTest {
 		assertEquals("1,5", tester.getPageSource());
 	}
 
+	@Test
+	public void testMarkdownDisplayEnonce1() {
+		tester.beginAt("/enonce/1");
+		tester.assertTextPresent("Scalaskel");
+	}
+
 }

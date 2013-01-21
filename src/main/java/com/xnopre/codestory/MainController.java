@@ -36,7 +36,13 @@ public class MainController implements Container {
 				String[] pathSegments = path.getSegments();
 				if (pathSegments != null && pathSegments.length > 0) {
 					if ("scalaskel".equals(pathSegments[0])) {
+						logger.info("call ScalaskelController");
 						new ScalaskelController().handle(request, response, pathSegments[1], pathSegments[2]);
+						return;
+					}
+					if ("enonce".equals(pathSegments[0])) {
+						logger.info("call EnonceController");
+						new EnonceController().handle(request, response, pathSegments[1]);
 						return;
 					}
 					System.out.println("pathSegments = " + Arrays.asList(pathSegments));
