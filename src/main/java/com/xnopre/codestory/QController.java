@@ -44,6 +44,9 @@ public class QController {
 		if (q.equals("As tu bien recu le second enonce(OUI/NON)")) {
 			return "OUI";
 		}
+		if (q.equals("As tu copie le code de ndeloof(OUI/NON/JE_SUIS_NICOLAS)")) {
+			return "NON";
+		}
 
 		try {
 			String mathExpressionWithDot = q.replace(",", ".");

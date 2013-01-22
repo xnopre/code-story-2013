@@ -119,4 +119,12 @@ public class QControllerTest extends AbsctractControllerTest {
 		assertEquals("OUI", getRequestBodyAsString());
 	}
 
+	@Test
+	public void testCopieCodeDeloof() throws IOException {
+
+		qController.handle(mockRequest, mockResponse, "As tu copie le code de ndeloof(OUI/NON/JE_SUIS_NICOLAS)");
+
+		assertEquals("NON", getRequestBodyAsString());
+	}
+
 }
