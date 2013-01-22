@@ -27,11 +27,11 @@ public class MainController implements Container {
 			} catch (IOException e) {
 				logger.error("Error getting content from request", e);
 			}
-			try {
-				logger.info(". form = " + request.getForm());
-			} catch (IOException e) {
-				logger.error("Error getting form from request", e);
-			}
+			// try {
+			// logger.info(". form = " + request.getForm());
+			// } catch (IOException e) {
+			// logger.error("Error getting form from request", e);
+			// }
 			if (path != null) {
 				String[] pathSegments = path.getSegments();
 				if (pathSegments != null && pathSegments.length > 0) {

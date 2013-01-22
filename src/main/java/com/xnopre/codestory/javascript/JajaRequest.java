@@ -23,4 +23,8 @@ public class JajaRequest {
 		return vols.toArray(new JajaVol[vols.size()]);
 	}
 
+	public List<JajaVol> getVols() {
+		return vols;
+	}
+
 }

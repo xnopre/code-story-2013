@@ -7,30 +7,38 @@ import static com.xnopre.codestory.javascript.JajaVol.State.UNADDABLE;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class PathCalculator {
 
+	private static final Logger logger = LoggerFactory.getLogger(PathCalculator.class);
+
 	public JajaPath calculate(JajaRequest javaRequest) {
-		JajaVol[] vols = javaRequest.getVolsArray();
+		List<JajaVol> vols = javaRequest.getVols();
 		TempPath tempPath = new TempPath();
-		TempPath bestTempPath = process(tempPath, vols);
+		logger.info("start process ...");
+		long time0 = System.currentTimeMillis();
+		TempPath bestTempPath = process(tempPath, vols, 0);
+		logger.info("process ended in " + (System.currentTimeMillis() - time0) + " ms");
 		return convertToJajaPath(bestTempPath);
 	}
 
-	private TempPath process(TempPath tempPath, JajaVol[] vols) {
+	private TempPath process(TempPath tempPath, List<JajaVol> vols, int startIndex) {
 		TempPath bestTempPath = new TempPath(tempPath);
-		for (int i = 0; i < vols.length; i++) {
-			JajaVol vol = vols[i];
+		for (int i = startIndex; i < vols.size(); i++) {
+			JajaVol vol = vols.get(i);
 			if (vol.state == AVAILABLE) {
 				TempPath newTempPath;
 				if (isAddable(tempPath, vol)) {
-					vol.state = ADDED;
 					tempPath.add(vol);
-					newTempPath = process(tempPath, vols);
+					vol.state = ADDED;
+					newTempPath = process(tempPath, vols, i + 1);
 					tempPath.remove(vol);
 					vol.state = AVAILABLE;
 				} else {
 					vol.state = UNADDABLE;
-					newTempPath = process(tempPath, vols);
+					newTempPath = process(tempPath, vols, i + 1);
 					vol.state = AVAILABLE;
 				}
 				bestTempPath = bestOf(bestTempPath, newTempPath);

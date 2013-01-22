@@ -2,6 +2,8 @@ package com.xnopre.codestory.javascript;
 
 import static junit.framework.Assert.assertEquals;
 
+import java.util.List;
+
 import org.junit.Test;
 
 public class JsonDecoderTest {
@@ -25,8 +27,10 @@ public class JsonDecoderTest {
 		assertEquals(3, vol.getDepart());
 		assertEquals(7, vol.getDuree());
 		assertEquals(14, vol.getPrix());
-		JajaVol[] vols = javaRequest.getVolsArray();
-		JajaVol volFomArray = vols[2];
+		// JajaVol[] vols = javaRequest.getVolsArray();
+		// JajaVol volFomArray = vols[2];
+		List<JajaVol> vols = javaRequest.getVols();
+		JajaVol volFomArray = vols.get(2);
 		assertEquals("LEGACY01", volFomArray.getName());
 		assertEquals(5, volFomArray.getDepart());
 		assertEquals(9, volFomArray.getDuree());
