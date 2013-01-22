@@ -22,6 +22,7 @@ public class JajascriptController {
 		JajaRequest jajaRequest = new JsonDecoder().decode(content);
 		JajaPath jajaPath = new PathCalculator().calculate(jajaRequest);
 		String resultJsonStr = new JsonEncoder().encode(jajaPath);
+		logger.info("Jajascript response : " + resultJsonStr);
 		response.getPrintStream().print(resultJsonStr);
 	}
 
