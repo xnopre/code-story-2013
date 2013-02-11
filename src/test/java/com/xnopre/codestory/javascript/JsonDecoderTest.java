@@ -23,18 +23,18 @@ public class JsonDecoderTest {
 
 		assertEquals(4, javaRequest.getVolsCount());
 		JajaVol vol = javaRequest.getVol(1);
-		assertEquals("META18", vol.getName());
-		assertEquals(3, vol.getDepart());
-		assertEquals(7, vol.getDuree());
-		assertEquals(14, vol.getPrix());
+		assertEquals("META18", vol.name);
+		assertEquals(3, vol.depart);
+		assertEquals(7, vol.duree);
+		assertEquals(14, vol.prix);
 		// JajaVol[] vols = javaRequest.getVolsArray();
 		// JajaVol volFomArray = vols[2];
 		List<JajaVol> vols = javaRequest.getVols();
 		JajaVol volFomArray = vols.get(2);
-		assertEquals("LEGACY01", volFomArray.getName());
-		assertEquals(5, volFomArray.getDepart());
-		assertEquals(9, volFomArray.getDuree());
-		assertEquals(8, volFomArray.getPrix());
+		assertEquals("LEGACY01", volFomArray.name);
+		assertEquals(5, volFomArray.depart);
+		assertEquals(9, volFomArray.duree);
+		assertEquals(8, volFomArray.prix);
 	}
 
 }

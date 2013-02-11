@@ -7,6 +7,7 @@ class TempPath {
 
 	private final List<JajaVol> vols = new ArrayList<JajaVol>();
 	private int gain = 0;
+	private long maskOccupations = 0L;
 
 	public TempPath() {
 	}
@@ -18,12 +19,14 @@ class TempPath {
 
 	public void add(JajaVol vol) {
 		vols.add(vol);
-		gain += vol.getPrix();
+		gain += vol.prix;
+		maskOccupations |= getMask(vol);
 	}
 
 	public void remove(JajaVol vol) {
 		vols.remove(vol);
-		gain -= vol.getPrix();
+		gain -= vol.prix;
+		maskOccupations &= ~getMask(vol);
 	}
 
 	public List<JajaVol> getVols() {
@@ -38,4 +41,15 @@ class TempPath {
 		return gain;
 	}
 
+	public boolean isAddable(JajaVol vol) {
+		return (maskOccupations & getMask(vol)) == 0;
+	}
+
+	private long getMask(JajaVol vol) {
+		long mask = 0;
+		for (int i = vol.depart; i <= vol.depart + vol.duree; i++) {
+			mask |= 1 << i;
+		}
+		return mask;
+	}
 }
